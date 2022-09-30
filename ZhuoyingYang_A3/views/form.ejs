@@ -1,0 +1,145 @@
+<!--Zhuoying Yang(Jocelyn) zyang7724@conestogac.on.ca-->
+<%- include('layouts/header'); -%>
+    <div class="fullpicture">
+        <img src="image/puzzles.jpeg" alt="fullpicture" title="fullpicture">
+    </div>
+    <%- include('layouts/sidebar'); -%>
+        <main>
+            <form name="myForm" action="" method="post" onsubmit="event.preventDefault">
+                <h2>Please Enter Purchase Informations:</h2>
+                <label>Number of Mario Puzzles:</label>
+                <input name="marioquantity" type="text" id="MarioQuant" placeholder="Quantity"><br><br>
+
+                <label>Number of Earth Puzzles::</label>
+                <input name="earthquantity" type="text" id="EarthQuant" placeholder="Quantity"><br><br>
+
+                <label>Number of Fish Puzzles::</label>
+                <input name="fishquantity" type="text" id="FishQuant" placeholder="Quantity"><br><br>
+
+                <label>Customer Name:</label>
+                <input name="name" type="text" id="name" placeholder="First Last"><br><br>
+
+                <label>Customer Phone Number:</label>
+                <input name="phone" type="text" id="phone" placeholder="111-222-1234"><br><br>
+                <label>Customer E-mail:</label>
+                <input name="email" type="text" id="email" placeholder="user@domin.com"><br><br>
+                <label>Delivery Address:</label>
+                <input name="address" type="text" id="address" placeholder="Address"><br><br>
+                <label>City:</label>
+                <input name="city" type="text" id="city" placeholder="City"><br><br>
+                <label>Province:</label>
+                <select name="province" id="province">
+              <option value="">----- Select -----</option>
+              <option value="AB">Alberta</option>
+              <option value="BC">British Columbia</option>
+              <option value="MB">Manitoba</option>
+              <option value="NB">New Brunswick</option>
+              <option value="NL">Newfoundland</option>
+              <option value="NS">Nova Scotia</option>
+              <option value="NT">Northwest Territories</option>
+              <option value="NU">Nunavyt</option>
+              <option value="ON">Ontario</option>
+              <option value="PE">Prince Edward Island</option>
+              <option value="QC">Quebec</option>
+              <option value="SK">Saskatchewan</option>
+              <option value="YT">Yukon</option>
+            </select>
+                <br/><br/>
+                <input name="submit" type="submit" value="Check Out">
+
+                <% 
+              if (typeof(errors) != 'undefined')
+              {
+                for (let error of errors)
+                {
+            %>
+                    <p>
+                        <%= error.msg %>
+                    </p>
+                    <%
+                }
+              }
+            %>
+
+                        <% 
+              if(typeof(total) != 'undefined')
+              { 
+                if (subTotal > 10) {
+            %>
+
+                            <h2 id="formResult">Your Receipt:</h2>
+                            <table>
+                                <tr>
+                                    <th>Customer Name:</th>
+                                    <td>
+                                        <%= name %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Email:</th>
+                                    <td>
+                                        <%= email %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Phone:</th>
+                                    <td>
+                                        <%= phone %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Address</th>
+                                    <td>
+                                        <%= address %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>City:</th>
+                                    <td>
+                                        <%= city %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Province:</th>
+                                    <td>
+                                        <%= province %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tax Rate:</th>
+                                    <td>
+                                        <%= taxrate.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sub Total:</th>
+                                    <td>$
+                                        <%= subTotal.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tax:</th>
+                                    <td> $
+                                        <%= tax.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td> $
+                                        <%= total.toFixed(2) %>
+                                    </td>
+                                </tr>
+                            </table>
+                            <%
+                }
+                else{
+            %>
+                                <p> Product worth less than $10.</p>
+                                <p> Add more product.</p>
+                                <%
+                }
+              }
+            %>
+            </form>
+        </main>
+        <%- include('layouts/footer'); -%>
